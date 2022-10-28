@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = mongoose.model(
-  'ingredient',
+  'Ingredient',
   new mongoose.Schema(
     {
       name: {
@@ -10,10 +10,10 @@ module.exports = mongoose.model(
       },
       nutrition_score: [Object],
       labels: [String],
-      image: String
+      image: String,
       creator: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'User',
         required: true,
       },
     },
