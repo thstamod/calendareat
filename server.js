@@ -10,10 +10,7 @@ require('dotenv').config();
 
 const app = express();
 const dbURILocal = require('./config').mongoURI;
-const dbURICloud = require('./config').mongoCloud(
-  process.env.MONGO_USER,
-  process.env.MONGO_PASSWORD
-);
+const dbURICloud = require('./config').mongoCloud;
 
 const isAuth = require('./middleware/is-auth');
 
