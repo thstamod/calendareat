@@ -8,7 +8,7 @@ const {
 const { timestampToISO } = require('../../utils');
 
 const user = new GraphQLObjectType({
-  name: 'user',
+  name: 'User',
   fields: {
     _id: {
       type: GraphQLString,

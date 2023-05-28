@@ -4,21 +4,26 @@ const inputIngredient = require('../../inputs/inputIngredient');
 
 const addNewIngredient = {
   type: ingredientType,
-  args: {
-    ...inputIngredient,
-  },
+  args: { ingredientInput: { type: inputIngredient } },
+
   resolve: async (parent, args, req) => {
-    // if (!req.isAuth) {
-    //   throw new Error('unAuthorized');
-    // }
-    const model = args;
+    if (!req.isAuth) {
+      throw new Error('unAuthorized');
+    }
+    const model = {
+      name: args.ingredientInput.name,
+      nutrition_score: args.ingredientInput.nutrition_score,
+      labels: args.ingredientInput.labels,
+      image: args.ingredientInput.image,
+    };
+
     model.creator = req.userId;
     const uModel = new IngredientTypeModel(model);
-    const newDocType = await uModel.save();
-    if (!newDocType) {
+    const newIngredient = await uModel.save();
+    if (!newIngredient) {
       throw new Error('error');
     }
-    return newDocType;
+    return newIngredient;
   },
 };
 

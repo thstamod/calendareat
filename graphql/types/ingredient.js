@@ -3,6 +3,7 @@ const {
   GraphQLString,
   GraphQLID,
   GraphQLNonNull,
+  GraphQLList,
 } = require('graphql');
 const { GraphQLJSONObject } = require('graphql-type-json');
 const userModel = require('../../mongoose/models/user');
@@ -10,7 +11,7 @@ const userType = require('./user');
 const { timestampToISO } = require('../../utils');
 
 const ingredientType = new GraphQLObjectType({
-  name: 'IngredientType',
+  name: 'Ingredient',
   fields: () => ({
     _id: {
       type: new GraphQLNonNull(GraphQLID),
@@ -22,7 +23,7 @@ const ingredientType = new GraphQLObjectType({
       type: GraphQLJSONObject,
     },
     labels: {
-      type: [GraphQLString],
+      type: new GraphQLList(GraphQLString),
     },
     image: {
       type: GraphQLString,

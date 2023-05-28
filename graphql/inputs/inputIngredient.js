@@ -2,11 +2,12 @@ const {
   GraphQLString,
   GraphQLInputObjectType,
   GraphQLNonNull,
+  GraphQLList,
 } = require('graphql');
 const { GraphQLJSONObject } = require('graphql-type-json');
 
-const InputIngredientType = new GraphQLInputObjectType({
-  name: 'InputIngredientType',
+const InputIngredient = new GraphQLInputObjectType({
+  name: 'InputIngredient',
   fields: {
     name: {
       type: new GraphQLNonNull(GraphQLString),
@@ -15,7 +16,7 @@ const InputIngredientType = new GraphQLInputObjectType({
       type: GraphQLJSONObject,
     },
     labels: {
-      type: [GraphQLString],
+      type: new GraphQLList(GraphQLString),
     },
     image: {
       type: GraphQLString,
@@ -23,4 +24,4 @@ const InputIngredientType = new GraphQLInputObjectType({
   },
 });
 
-module.exports = InputIngredientType;
+module.exports = InputIngredient;

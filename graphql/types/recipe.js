@@ -1,4 +1,9 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID } = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLID,
+  GraphQLList,
+} = require('graphql');
 
 const userModel = require('../../mongoose/models/user');
 const userType = require('./user');
@@ -17,7 +22,7 @@ const recipeType = new GraphQLObjectType({
       type: GraphQLString,
     },
     labels: {
-      type: [GraphQLString],
+      type: GraphQLList(GraphQLString),
     },
     creator: {
       type: userType,

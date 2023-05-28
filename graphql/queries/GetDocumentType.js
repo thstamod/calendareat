@@ -1,20 +1,21 @@
 const { GraphQLString } = require('graphql');
-const IngredientModel = require('../../mongoose/models/ingredient');
+
+const ingredientModel = require('../../mongoose/models/ingredient');
 const ingredient = require('../types/ingredient');
 
-const GetIngredient = {
+const GetDocumentType = {
   type: ingredient,
-
   args: { _id: { type: GraphQLString } },
   resolve: async (parent, args, req) => {
     if (!req.isAuth) {
       throw new Error('unAuthorized');
     }
-    const ingredientData = await IngredientModel.findById(args._id);
-    if (!ingredientData) {
+    const docTypes = await ingredientModel.findById(args._id);
+    if (!docTypes) {
       throw new Error('error while fetching data');
     }
-    return ingredientData;
+    return docTypes;
   },
 };
-module.exports = GetIngredient;
+
+module.exports = GetDocumentType;

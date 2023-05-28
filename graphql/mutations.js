@@ -1,13 +1,19 @@
 const { GraphQLObjectType } = require('graphql');
-const ingredientMutations = require('./mutations/ingredient');
+const {
+  addNewIngredient,
+  deleteIngredient,
+  updateIngredient,
+} = require('./mutations/ingredient');
 const addNewUser = require('./mutations/user/addNewUser');
 
-const Mutations = new GraphQLObjectType({
+const mutations = new GraphQLObjectType({
   name: 'Mutations',
   fields: {
     addNewUser,
-    // ...ingredientMutations,
+    addNewIngredient,
+    deleteIngredient,
+    updateIngredient,
   },
 });
 
-module.exports = Mutations;
+module.exports = mutations;
